@@ -48,10 +48,6 @@
       <Project>{12aeab6a-d203-4190-84cc-512515948d1c}</Project>
       <Name>OganiShop.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OganiShop.Data\OganiShop.Data.csproj">
-      <Project>{92bd19bb-9d53-49f3-bd15-6fe6a88367f8}</Project>
-      <Name>OganiShop.Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OganiShop.Model\OganiShop.Model.csproj">
       <Project>{f761feb9-a0ca-4e45-ade9-4da36b4a9094}</Project>
       <Name>OganiShop.Model</Name>

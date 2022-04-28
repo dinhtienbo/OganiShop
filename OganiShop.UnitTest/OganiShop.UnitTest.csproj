@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -60,7 +61,7 @@
       <Name>OganiShop.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\OganiShop.Data\OganiShop.Data.csproj">
-      <Project>{92bd19bb-9d53-49f3-bd15-6fe6a88367f8}</Project>
+      <Project>{f24e2234-3204-4ae5-83b0-e69a8210665e}</Project>
       <Name>OganiShop.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\OganiShop.Model\OganiShop.Model.csproj">
