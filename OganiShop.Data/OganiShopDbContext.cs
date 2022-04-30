@@ -1,4 +1,5 @@
-﻿using OganiShop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using OganiShop.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace OganiShop.Data
 {
-    public class OganiShopDbContext : DbContext
+    public class OganiShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public OganiShopDbContext() : base("OganiShopConnection")
         {
@@ -37,9 +38,15 @@ namespace OganiShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
 
         public DbSet<Error> Errors { set; get; }
+
+        public static OganiShopDbContext Create()
+        {
+            return new OganiShopDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
