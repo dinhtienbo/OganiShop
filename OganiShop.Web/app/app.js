@@ -1,7 +1,11 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
 (function () {
-    angular.module('oganishop', ['oganishop.products', 'oganishop.common']).config(config);
+    angular.module('oganishop',
+        ['oganishop.products',
+            'oganishop.product_categories',
+            'oganishop.common'])
+        .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
