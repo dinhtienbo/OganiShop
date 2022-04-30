@@ -1,8 +1,10 @@
-﻿using AutoMapper;
+﻿
 using OganiShop.Model.Models;
 using OganiShop.Service;
 using OganiShop.Web.Infrastructure.Core;
+using OganiShop.Web.Infrastructure.Extensions;
 using OganiShop.Web.Models;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +24,23 @@ namespace OganiShop.Web.Api
         {
             this._productCategoryService = productCategoryService;
         }
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage GetAll(HttpRequestMessage request)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                var model = _productCategoryService.GetAll();
+
+                var responseData = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+
+                var response = request.CreateResponse(HttpStatusCode.OK, responseData);
+                return response;
+            });
+        }
 
         [Route("getall")]
+        [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
         {
             return CreateHttpResponse(request, () =>
@@ -47,5 +64,35 @@ namespace OganiShop.Web.Api
                 return response;
             });
         }
+
+
+        [Route("create")]
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(HttpRequestMessage request, ProductCategoryViewModel productCategoryVm)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var newProductCategory = new ProductCategory();
+                    newProductCategory.UpdateProductCategory(productCategoryVm);
+                    newProductCategory.CreatedDate = DateTime.Now;
+                    _productCategoryService.Add(newProductCategory);
+                    _productCategoryService.Save();
+
+                    var responseData = Mapper.Map<ProductCategory, ProductCategoryViewModel>(newProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseData);
+                }
+
+                return response;
+            });
+        }
+
     }
 }
