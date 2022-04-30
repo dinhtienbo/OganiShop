@@ -111,7 +111,6 @@
         link: function (scope, elem/*, attrs */) {
           var chart, container = document.createElement('div');
           container.className = 'chart-container';
-          container.setAttribute("style", "text-align: center;"); 
           elem.replaceWith(container);
           container.appendChild(elem[0]);
 
