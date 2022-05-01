@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('oganishop.common', ['ui.router'])
+    angular.module('oganishop.common', ['ui.router', 'ngBootbox'])
 })();
