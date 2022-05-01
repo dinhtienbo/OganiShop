@@ -84,6 +84,10 @@
     <Compile Include="Migrations\202205010914198_AddE.designer.cs">
       <DependentUpon>202205010914198_AddE.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205011542076_AddTagField.cs" />
+    <Compile Include="Migrations\202205011542076_AddTagField.designer.cs">
+      <DependentUpon>202205011542076_AddTagField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205010914198_AddE.resx">
       <DependentUpon>202205010914198_AddE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205011542076_AddTagField.resx">
+      <DependentUpon>202205011542076_AddTagField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
