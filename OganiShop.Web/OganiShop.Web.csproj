@@ -205,6 +205,7 @@
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
     <Compile Include="Api\ProductCategoryController.cs" />
+    <Compile Include="Api\ProductController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -4996,6 +4997,7 @@
     <Folder Include="app\shared\navigation\" />
     <Folder Include="App_Data\" />
     <Folder Include="Assets\client\" />
+    <Folder Include="UploadedFiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -5003,6 +5005,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bower.json" />
+    <Content Include="Assets\admin\templates\ProductImportTemplate.xlsx" />
     <Content Include="Assets\admin\libs\angular-chart.js\.bower.json" />
     <Content Include="Assets\admin\libs\angular-chart.js\angular-chart.less" />
     <Content Include="Assets\admin\libs\angular-chart.js\bower.json" />
@@ -5291,7 +5294,6 @@
     <Content Include="Assets\admin\libs\toastr\toastr.js.map" />
     <Content Include="Assets\admin\libs\toastr\toastr.less" />
     <Content Include="Assets\admin\libs\toastr\toastr.scss" />
-    <Content Include="Assets\admin\templates\ProductImportTemplate.xlsx" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
