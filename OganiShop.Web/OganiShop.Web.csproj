@@ -218,8 +218,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AboutController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -5096,6 +5100,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="UploadedFiles\images\" />
     <Folder Include="UploadedFiles\product\" />
+    <Folder Include="Views\About\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Post\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -5428,6 +5435,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Category.cshtml" />
     <Content Include="Views\Shared\Slide.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
+    <Content Include="Views\Shared\LayoutProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OganiShop.Common\OganiShop.Common.csproj">

@@ -36,7 +36,7 @@
                 </div>
                 <div class="featured__controls">
                     <ul>
-                        <li class="active" data-filter="*">All</li>
+                        <li class="active" data-filter="*">Tất cả</li>
                         @foreach (var productCategory in Model.ProductCategorys)
                         {
                             <li data-filter=".Ogani_@productCategory.ID">@productCategory.Name</li>
@@ -50,7 +50,7 @@
             @foreach (var product in Model.GetAll)
             {
                 var url = "/" + product.Alias + ".p-" + product.ID + ".html";
-                <div class="col-lg-3 col-md-4 col-sm-6 mix Ogani_@product.ID">
+                <div class="col-lg-3 col-md-4 col-sm-6 mix Ogani_@product.CategoryID">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="@product.Image">
                             <ul class="featured__item__pic__hover">
