@@ -14,9 +14,12 @@
                 <div class="col-lg-4 col-md-5">
                     <div class="filter__sort">
                         <span>Sort By</span>
-                        <select>
-                            <option value="0">Default</option>
-                            <option value="1">asd</option>
+                        <select class="form-control" id="exampleFormControlSelect1" onchange="location = this.value;">
+                            <option value="?page=@Model.Page&sort=popular">Phổ biến</option>
+                            <option value="?page=@Model.Page&sort=new">Mới</option>
+                            <option value="?page=@Model.Page&sort=discount">Khuyến mại</option>
+                            <option value="?page=@Model.Page&sort=price">Thấp -> Cao</option>
+
                         </select>
                     </div>
                 </div>
