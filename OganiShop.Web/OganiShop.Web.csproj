@@ -5019,7 +5019,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="bower.json" />
-    <Content Include="Assets\admin\templates\ProductImportTemplate.xlsx" />
     <Content Include="Assets\admin\libs\angular-chart.js\.bower.json" />
     <Content Include="Assets\admin\libs\angular-chart.js\angular-chart.less" />
     <Content Include="Assets\admin\libs\angular-chart.js\bower.json" />
@@ -5216,6 +5215,11 @@
     <Content Include="Assets\admin\libs\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\admin\libs\ckeditor\skins\kama\readme.md" />
     <Content Include="Assets\admin\libs\ckeditor\skins\moono\readme.md" />
+    <Content Include="Assets\admin\libs\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Assets\admin\libs\fastclick\.bower.json" />
     <Content Include="Assets\admin\libs\fastclick\bower.json" />
     <Content Include="Assets\admin\libs\fastclick\LICENSE" />
@@ -5303,11 +5307,7 @@
     <Content Include="Assets\admin\libs\toastr\toastr.js.map" />
     <Content Include="Assets\admin\libs\toastr\toastr.less" />
     <Content Include="Assets\admin\libs\toastr\toastr.scss" />
-    <Content Include="Assets\admin\libs\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="Assets\admin\libs\ckfinder\skins\bootstrap\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Assets\admin\templates\ProductImportTemplate.xlsx" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
