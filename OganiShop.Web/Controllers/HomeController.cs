@@ -1,4 +1,8 @@
-﻿using System;
+﻿using AutoMapper;
+using OganiShop.Model.Models;
+using OganiShop.Service;
+using OganiShop.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +12,15 @@ namespace OganiShop.Web.Controllers
 {
     public class HomeController : Controller
     {
+        IProductCategoryService _productCategoryService;
+        ICommonService _commonService;
+
+        public HomeController(IProductCategoryService productCategoryService, ICommonService commonService)
+        {
+            _productCategoryService = productCategoryService;
+            _commonService = commonService;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -26,5 +39,20 @@ namespace OganiShop.Web.Controllers
 
             return View();
         }
+
+        [ChildActionOnly]
+        public ActionResult Slide()
+        {
+            return PartialView();
+        }
+
+        [ChildActionOnly]
+        public ActionResult Category()
+        {
+            var model = _productCategoryService.GetAll();
+            var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
+            return PartialView(listProductCategoryViewModel);
+        }
+
     }
 }

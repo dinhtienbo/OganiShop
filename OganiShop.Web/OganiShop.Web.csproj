@@ -5424,6 +5424,8 @@
     <Content Include="Views\Shared\Layouts.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Category.cshtml" />
+    <Content Include="Views\Shared\Slide.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OganiShop.Common\OganiShop.Common.csproj">
