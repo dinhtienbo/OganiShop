@@ -35,4 +35,3 @@ namespace OganiShop.Model.Models
         public virtual IEnumerable<Post> Posts { set; get; }
     }
 }
-

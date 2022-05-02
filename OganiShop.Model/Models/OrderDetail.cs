@@ -19,7 +19,9 @@ namespace OganiShop.Model.Models
         [Column(Order = 2)]
         public int ProductID { set; get; }
 
-        public int Quantitty { set; get; }
+        public int Quantity { set; get; }
+
+        public decimal Price { set; get; }
 
         [ForeignKey("OrderID")]
         public virtual Order Order { set; get; }

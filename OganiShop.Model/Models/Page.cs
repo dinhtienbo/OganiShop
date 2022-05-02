@@ -28,4 +28,3 @@ namespace OganiShop.Model.Models
         public string Content { set; get; }
     }
 }
-

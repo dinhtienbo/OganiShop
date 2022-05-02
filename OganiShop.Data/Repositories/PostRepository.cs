@@ -1,11 +1,9 @@
-﻿using OganiShop.Data.Infrastructure;
-using OganiShop.Model.Models;
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using OganiShop.Data.Infrastructure;
+using OganiShop.Model.Models;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace OganiShop.Data.Repositories
 {
@@ -28,8 +26,11 @@ namespace OganiShop.Data.Repositories
                         where pt.TagID == tag && p.Status
                         orderby p.CreatedDate descending
                         select p;
+
             totalRow = query.Count();
+
             query = query.Skip((pageIndex - 1) * pageSize).Take(pageSize);
+
             return query;
         }
     }

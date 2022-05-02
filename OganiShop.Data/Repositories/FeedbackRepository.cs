@@ -8,13 +8,13 @@ using OganiShop.Model.Models;
 
 namespace OganiShop.Data.Repositories
 {
-    public interface IMenuGroupRepository : IRepository<MenuGroup>
+    public interface IFeedbackRepository : IRepository<Feedback>
     {
-    }
 
-    public class MenuGroupRepository : RepositoryBase<MenuGroup>, IMenuGroupRepository
+    }
+    public class FeedbackRepository : RepositoryBase<Feedback>, IFeedbackRepository
     {
-        public MenuGroupRepository(IDbFactory dbFactory) : base(dbFactory)
+        public FeedbackRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
     }
