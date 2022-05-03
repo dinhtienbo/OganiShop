@@ -25,6 +25,7 @@
             CreateSlide(context);
             //  This method will be called after migrating to the latest version.
             CreatePage(context);
+            CreateContactDetail(context);
 
 
         }
@@ -128,6 +129,43 @@
 
                     };
                     context.Pages.Add(page);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void CreateContactDetail(OganiShopDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                try
+                {
+                    var contactDetail = new OganiShop.Model.Models.ContactDetail()
+                    {
+                        Name = "Shop Ogani",
+                        Address = "Hưng Yên",
+                        Email = "Ogani@gmail.com",
+                        Lat = 20.9653819,
+                        Lng = 105.9491337,
+                        Phone = "0396329108",
+                        Website = "http://Ogani.com.vn",
+                        Other = "",
+                        Status = true
+
+                    };
+                    context.ContactDetails.Add(contactDetail);
                     context.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
