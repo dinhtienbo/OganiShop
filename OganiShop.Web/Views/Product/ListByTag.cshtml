@@ -1,25 +1,17 @@
 ﻿@model OganiShop.Web.Infrastructure.Core.PaginationSet<OganiShop.Web.Models.ProductViewModel>
 
 @{
-    ViewBag.Title = "Category";
+    var tag = (OganiShop.Web.Models.TagViewModel)ViewBag.Tag;
+    ViewBag.Title = "Kết quả tìm kiếm cho tag " + tag.Name;
     Layout = "~/Views/Shared/Layouts.cshtml";
-    var category = (OganiShop.Web.Models.ProductCategoryViewModel)ViewBag.Category;
 }
-
 <div class="women-product">
     @if (Model.Count > 0)
     {
         <div class="w_content">
             <div class="women">
-                <a href="/@(category.Alias).pc-@(category.ID).html"><h4>@category.Name - <span>@Model.TotalCount sản phẩm</span> </h4></a>
-                <ul class="w_nav">
-                    <li>Sắp xếp : </li>
-                    <li><a class="active" href="?page=@Model.Page&sort=popular">Phổ biến</a></li> |
-                    <li><a href="?page=@Model.Page&sort=new">Mới </a></li> |
-                    <li><a href="?page=@Model.Page&sort=discount">Khuyến mãi</a></li> |
-                    <li><a href="?page=@Model.Page&sort=price">Giá: Thấp -> Cao </a></li>
-                    <div class="clearfix"> </div>
-                </ul>
+                <a href=""><h4>Tag: @tag.Name - <span>@Model.TotalCount sản phẩm</span> </h4></a>
+
                 <div class="clearfix"> </div>
             </div>
         </div>
@@ -27,7 +19,7 @@
         <div class="grid-product">
             @foreach (var product in Model.Items)
             {
-                var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                var url = "/" + product.Alias + ".p-" + product.ID;
                 <div class="product-grid">
                     <div class="content_box">
                         <a href="@url">
