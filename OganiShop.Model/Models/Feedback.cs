@@ -29,5 +29,7 @@ namespace OganiShop.Model.Models
 
         [Required]
         public bool Status { set; get; }
+
+       
     }
 }
