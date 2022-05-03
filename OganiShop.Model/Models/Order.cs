@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OganiShop.Model.Models
 {
-
     [Table("Orders")]
     public class Order
     {
@@ -43,13 +39,6 @@ namespace OganiShop.Model.Models
         public string CreatedBy { set; get; }
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }
-
-        [StringLength(128)]
-        [Column(TypeName = "nvarchar")]
-        public string CustomerId { set; get; }
-
-        [ForeignKey("CustomerId")]
-        public virtual ApplicationUser User { set; get; }
 
         public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
     }

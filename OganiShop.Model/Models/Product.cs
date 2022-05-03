@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
@@ -7,7 +8,6 @@ using OganiShop.Model.Abstract;
 namespace OganiShop.Model.Models
 {
     [Table("Products")]
-
     public class Product : Auditable
     {
         [Key]
@@ -48,8 +48,6 @@ namespace OganiShop.Model.Models
         public string Tags { set; get; }
 
         public int Quantity { set; get; }
-
-        public decimal OriginalPrice { set; get; }
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }

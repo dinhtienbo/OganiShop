@@ -92,13 +92,13 @@
     <Compile Include="Migrations\202205021623248_DatabaseFinal.designer.cs">
       <DependentUpon>202205021623248_DatabaseFinal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205031737038_DbUpdate.cs" />
+    <Compile Include="Migrations\202205031737038_DbUpdate.designer.cs">
+      <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
-    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
-    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
-    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FeedbackRepository.cs" />
@@ -155,6 +155,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205021623248_DatabaseFinal.resx">
       <DependentUpon>202205021623248_DatabaseFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031737038_DbUpdate.resx">
+      <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
