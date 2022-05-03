@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202205031737038_DbUpdate.designer.cs">
       <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205031815468_UpdateCart.cs" />
+    <Compile Include="Migrations\202205031815468_UpdateCart.designer.cs">
+      <DependentUpon>202205031815468_UpdateCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205031737038_DbUpdate.resx">
       <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031815468_UpdateCart.resx">
+      <DependentUpon>202205031815468_UpdateCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
