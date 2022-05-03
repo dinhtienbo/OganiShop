@@ -17,8 +17,8 @@ namespace OganiShop.Web.Controllers
         ICommonService _commonService;
 
         public HomeController(IProductCategoryService productCategoryService,
-           IProductService productService,
-           ICommonService commonService)
+            IProductService productService,
+            ICommonService commonService)
         {
             _productCategoryService = productCategoryService;
             _commonService = commonService;
@@ -32,19 +32,12 @@ namespace OganiShop.Web.Controllers
             var homeViewModel = new HomeViewModel();
             homeViewModel.Slides = slideView;
 
-            var lastestProductModel = _productService.GetLastest(8);
-            var topSaleProductModel = _productService.GetHotProduct(8);
+            var lastestProductModel = _productService.GetLastest(3);
+            var topSaleProductModel = _productService.GetHotProduct(3);
             var lastestProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(lastestProductModel);
             var topSaleProductViewModel = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(topSaleProductModel);
             homeViewModel.LastestProducts = lastestProductViewModel;
             homeViewModel.TopSaleProducts = topSaleProductViewModel;
-
-            //Category
-            var getAllCategory = _productCategoryService.GetAll();
-            var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(getAllCategory);
-            homeViewModel.ProductCategorys = listProductCategoryViewModel;
-            var getAll = _productService.GetAll();
-            homeViewModel.GetAll = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(getAll);
             return View(homeViewModel);
         }
 
@@ -63,7 +56,15 @@ namespace OganiShop.Web.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult Slide()
+        public ActionResult Footer()
+        {
+            var footerModel = _commonService.GetFooter();
+            var footerViewModel = Mapper.Map<Footer, FooterViewModel>(footerModel);
+            return PartialView(footerViewModel);
+        }
+
+        [ChildActionOnly]
+        public ActionResult Header()
         {
             return PartialView();
         }
@@ -75,6 +76,5 @@ namespace OganiShop.Web.Controllers
             var listProductCategoryViewModel = Mapper.Map<IEnumerable<ProductCategory>, IEnumerable<ProductCategoryViewModel>>(model);
             return PartialView(listProductCategoryViewModel);
         }
-
     }
 }

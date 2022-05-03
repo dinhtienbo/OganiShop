@@ -28,6 +28,11 @@ namespace OganiShop.Service
 
         IEnumerable<Product> GetListProductByCategoryIdPaging(int categoryId, int page, int pageSize, string sort, out int totalRow);
 
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow);
+
+        IEnumerable<Product> GetReatedProducts(int id, int top);
+        IEnumerable<string> GetListProductByName(string name);
+
         Product GetById(int id);
 
         void Save();
@@ -167,6 +172,42 @@ namespace OganiShop.Service
             totalRow = query.Count();
 
             return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y => y.Name);
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, string sort, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
+
+            switch (sort)
+            {
+                case "popular":
+                    query = query.OrderByDescending(x => x.ViewCount);
+                    break;
+                case "discount":
+                    query = query.OrderByDescending(x => x.PromotionPrice.HasValue);
+                    break;
+                case "price":
+                    query = query.OrderBy(x => x.Price);
+                    break;
+                default:
+                    query = query.OrderByDescending(x => x.CreatedDate);
+                    break;
+            }
+
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<Product> GetReatedProducts(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID == product.CategoryID).OrderByDescending(x => x.CreatedDate).Take(top);
         }
     }
 }

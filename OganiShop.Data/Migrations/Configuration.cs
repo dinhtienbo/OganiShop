@@ -2,6 +2,7 @@
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using OganiShop.Common;
     using OganiShop.Model.Models;
     using System;
     using System.Collections.Generic;
@@ -19,16 +20,22 @@
         protected override void Seed(OganiShop.Data.OganiShopDbContext context)
         {
             CreateProductCategorySample(context);
+            CreateSlide(context);
             //  This method will be called after migrating to the latest version.
 
+
+
+        }
+        private void CreateUser(OganiShopDbContext context)
+        {
             //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new OganiShopDbContext()));
 
             //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new OganiShopDbContext()));
 
             //var user = new ApplicationUser()
             //{
-            //    UserName = "tedu",
-            //    Email = "tedu.international@gmail.com",
+            //    UserName = "Ogani",
+            //    Email = "Ogani.international@gmail.com",
             //    EmailConfirmed = true,
             //    BirthDay = DateTime.Now,
             //    FullName = "Technology Education"
@@ -43,12 +50,10 @@
             //    roleManager.Create(new IdentityRole { Name = "User" });
             //}
 
-            //var adminUser = manager.FindByEmail("tedu.international@gmail.com");
+            //var adminUser = manager.FindByEmail("Ogani.international@gmail.com");
 
             //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
-
         }
-
         private void CreateProductCategorySample(OganiShop.Data.OganiShopDbContext context)
         {
             if (context.ProductCategories.Count() == 0)
@@ -64,6 +69,46 @@
                 context.SaveChanges();
             }
 
+        }
+        private void CreateFooter(OganiShopDbContext context)
+        {
+            if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId) == 0)
+            {
+                string content = "";
+            }
+        }
+
+        private void CreateSlide(OganiShopDbContext context)
+        {
+            if (context.Slides.Count() == 0)
+            {
+                List<Slide> listSlide = new List<Slide>()
+                {
+                    new Slide() {
+                        Name ="Slide 1",
+                        DisplayOrder =1,
+                        Status =true,
+                        Url ="#",
+                        Image ="/Assets/client/images/bag.jpg",
+                        Content =@"	<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur 
+                            adipisicing elit, sed do eiusmod tempor incididunt ut labore et </ p >
+                        <span class=""on-get"">GET NOW</span>" },
+                    new Slide() {
+                        Name ="Slide 2",
+                        DisplayOrder =2,
+                        Status =true,
+                        Url ="#",
+                        Image ="/Assets/client/images/bag1.jpg",
+                    Content=@"<h2>FLAT 50% 0FF</h2>
+                                <label>FOR ALL PURCHASE <b>VALUE</b></label>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et </ p >
+                                <span class=""on-get"">GET NOW</span>"},
+                };
+                context.Slides.AddRange(listSlide);
+                context.SaveChanges();
+            }
         }
     }
 }
