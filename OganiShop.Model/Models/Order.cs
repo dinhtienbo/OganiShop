@@ -36,9 +36,14 @@ namespace OganiShop.Model.Models
         public string PaymentMethod { set; get; }
 
         public DateTime? CreatedDate { set; get; }
+
         public string CreatedBy { set; get; }
+
         public string PaymentStatus { set; get; }
+
         public bool Status { set; get; }
+
+        public String OrderStatus { get; set; }
 
         [StringLength(128)]
         [Column(TypeName = "nvarchar")]
@@ -47,6 +52,6 @@ namespace OganiShop.Model.Models
         [ForeignKey("CustomerId")]
         public virtual ApplicationUser User { set; get; }
 
-        public virtual IEnumerable<OrderDetail> OrderDetails { set; get; }
+        public virtual ICollection<OrderDetail> OrderDetails { set; get; }
     }
 }

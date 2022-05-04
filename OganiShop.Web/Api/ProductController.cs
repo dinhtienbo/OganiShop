@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace OganiShop.Web.Api
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : ApiControllerBase
     {
         #region Initialize
@@ -70,7 +71,7 @@ namespace OganiShop.Web.Api
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query.AsEnumerable());
 
                 var paginationSet = new PaginationSet<ProductViewModel>()
                 {
@@ -102,6 +103,7 @@ namespace OganiShop.Web.Api
                     var newProduct = new Product();
                     newProduct.UpdateProduct(productCategoryVm);
                     newProduct.CreatedDate = DateTime.Now;
+                    newProduct.CreatedBy = User.Identity.Name;
                     _productService.Add(newProduct);
                     _productService.Save();
 
@@ -131,7 +133,7 @@ namespace OganiShop.Web.Api
 
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
-
+                    dbProduct.UpdatedBy = User.Identity.Name;
                     _productService.Update(dbProduct);
                     _productService.Save();
 

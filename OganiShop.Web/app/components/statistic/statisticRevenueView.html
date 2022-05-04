@@ -1,0 +1,90 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thống Kê Doanh số
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="statistic">Thống Kê</a></li>
+        <li class="active"> Doanh số</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="startDate" placeholder="Ngày bắt đầu (mm/dd/yyyy)" />
+        </div>
+        <div class="col-md-4">
+            <input type="text" class="form-control" ng-model="endDate" placeholder="Ngày kết thúc (mm/dd/yyyy)" />
+        </div>
+        <div class="col-md-4">
+            <button class="btn btn-primary" ng-click="getStatistic()">Lọc</button>
+            <button class="btn btn-primary" ng-click="byDay()">Theo ngày</button>
+            <button class="btn btn-primary" ng-click="byMonth()">Theo tháng</button>
+            <button class="btn btn-primary" ng-click="byQuarter()">Theo quý</button>
+            <button class="btn btn-primary" ng-click="byYear()">Theo năm</button>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-lg-7">
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="nav-tabs-custom">
+                <!-- Tabs within a box -->
+                <ul class="nav nav-tabs pull-right">
+                    <li class="active"><a href="#revenue-chart" data-toggle="tab">Doanh thu</a></li>
+                </ul>
+                <div class="tab-content no-padding" style="text-align: center">
+                    <!-- Morris chart - Sales -->
+                    <canvas id="bar" class="chart chart-line" style="width: 95%"
+                            chart-data="chartdata" chart-labels="labels" chart-series="series"></canvas>
+                </div>
+            </div><!-- /.nav-tabs-custom -->
+
+        </section><!-- /.Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-5">
+            <!-- Map box -->
+            <div class="box box-solid">
+                <div class="box-header">
+                    <!-- tools box -->
+                    <i class="fa fa-map-marker"></i>
+                    <h3 class="box-title">
+                        Dữ liệu thống kê
+                    </h3>
+                </div>
+                <div class="box-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Ngày</td>
+                                <td>Doanh số</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in tabledata">
+                                <td>
+                                    {{item.Date | date}}
+                                </td>
+                                <td>
+                                    {{item.Revenues | number}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tổng cộng: 
+                                </td>
+                                <td>{{totalRevenues | number}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body-->
+                <div class="box-footer no-border">
+                </div>
+            </div>
+        </section><!-- right col -->
+    </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->

@@ -7,7 +7,10 @@
             'oganishop.product_categories',
             'oganishop.application_roles',
             'oganishop.application_users',
-            'oganishop.common'])
+            'oganishop.statistics',
+            'oganishop.common',
+            'oganishop.order_detail',
+        ])
         .config(config)
         .config(configAuthentication);
 

@@ -11,6 +11,8 @@ namespace OganiShop.Web.Models
 
         public int ProductID { set; get; }
 
-        public int Quantitty { set; get; }
+        public int Quantity { set; get; }
+
+        public decimal CurrentPrice { set; get; }
     }
 }

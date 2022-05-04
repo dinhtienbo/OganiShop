@@ -38,8 +38,12 @@ namespace OganiShop.Web.Models
         public string PaymentStatus { set; get; }
         public bool Status { set; get; }
 
+        public String OrderStatus { get; set; }
+
         [MaxLength(128)]
         public string CustomerId { set; get; }
+
+        public string BankCode { set; get; }
 
         public IEnumerable<OrderDetailViewModel> OrderDetails { set; get; }
     }

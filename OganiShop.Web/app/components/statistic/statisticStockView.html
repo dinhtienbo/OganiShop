@@ -1,0 +1,66 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thống Kê Tồn Kho
+
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="statistic">Thống Kê</a></li>
+        <li class="active">Tồn kho</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <!-- Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-12">
+            <!-- Map box -->
+            <div class="box box-solid">
+                <div class="box-header">
+                    <!-- tools box -->
+                    <i class="fa fa-map-marker"></i>
+                    <h3 class="box-title">
+                        Dữ liệu thống kê
+                    </h3>
+                </div>
+                <div class="box-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>Mã sản phẩm</td>
+                                <td>Tên sản phẩm</td>
+                                <td>Số lượng</td>
+                                <td>Ngày nhập</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in tabledata">
+                                <td ng-if="item.Quantity !== 0" >
+                                    {{item.ID}}
+                                </td>
+                                <td ng-if="item.Quantity !== 0">
+                                    <a href="#" ui-sref="product_edit({id:item.ID})">{{item.Name}}</a>
+                                </td>
+                                <!--<td ng-if="item.Quantity === 0">
+                                    <span style="font-weight: bold; color: red;">{{item.Quantity | number}}</span>
+                                </td>-->
+                                <td ng-if="item.Quantity !== 0">
+                                    {{item.Quantity | number}}
+                                </td>
+                                <td ng-if="item.Quantity !== 0" >
+                                    {{item.CreatedDate | date}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body-->
+                <div class="box-footer no-border">
+                </div>
+            </div>
+        </section><!-- right col -->
+    </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->

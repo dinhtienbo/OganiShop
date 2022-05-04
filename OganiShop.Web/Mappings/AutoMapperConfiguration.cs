@@ -27,6 +27,9 @@ namespace OganiShop.Web.Mappings
             Mapper.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
             Mapper.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
             Mapper.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+
+            Mapper.CreateMap<Order, OrderViewModel>();
+            Mapper.CreateMap<OrderDetail, OrderDetailViewModel>();
         }
 
     }
