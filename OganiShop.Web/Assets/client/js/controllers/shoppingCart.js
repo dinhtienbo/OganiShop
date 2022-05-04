@@ -1,6 +1,7 @@
 ﻿var cart = {
     init: function () {
         cart.loadData();
+        cart.loadData2();
         cart.registerEvent();
     },
     registerEvent: function () {
@@ -34,11 +35,17 @@
             e.preventDefault();
             var productId = parseInt($(this).data('id'));
             cart.deleteItem(productId);
+            window.location.reload(true);
         });
-        $('.txtQuantity').off('keyup').on('keyup', function () {
+
+        $('.txtQuantity').off('change').on('change', function () {
+            var productId = parseInt($(this).data('id'));
             var quantity = parseInt($(this).val());
+            cart.checkQuantity(quantity, productId);
+
             var productid = parseInt($(this).data('id'));
             var price = parseFloat($(this).data('price'));
+
             if (isNaN(quantity) == false) {
 
                 var amount = quantity * price;
@@ -50,14 +57,13 @@
             }
 
             $('#lblTotalOrder').text(numeral(cart.getTotalOrder()).format('0,0'));
-
-
+            $('#lblTotalOrder2').text(numeral(cart.getTotalOrder()).format('0,0'));
             cart.updateAll();
 
-        });
+        })
         $('#btnContinue').off('click').on('click', function (e) {
             e.preventDefault();
-            window.location.href = "/";
+            window.location.href = '/';
         });
         $('#btnDeleteAll').off('click').on('click', function (e) {
             e.preventDefault();
@@ -65,7 +71,10 @@
         });
         $('#btnCheckout').off('click').on('click', function (e) {
             e.preventDefault();
+
             $('#divCheckout').show();
+
+
         });
         $('#chkUserLoginInfo').off('click').on('click', function () {
             if ($(this).prop('checked'))
@@ -86,6 +95,19 @@
 
         });
 
+        $('input[name="paymentMethod"]').off('click').on('click', function () {
+            if ($(this).val() == 'NL') {
+                $('.boxContent').hide();
+                $('#nganluongContent').show();
+            }
+            else if ($(this).val() == 'ATM_ONLINE') {
+                $('.boxContent').hide();
+                $('#bankContent').show();
+            }
+            else {
+                $('.boxContent').hide();
+            }
+        });
     },
     getLoginUser: function () {
         $.ajax({
@@ -111,7 +133,8 @@
             CustomerEmail: $('#txtEmail').val(),
             CustomerMobile: $('#txtPhone').val(),
             CustomerMessage: $('#txtMessage').val(),
-            PaymentMethod: "Thanh toán tiền mặt",
+            PaymentMethod: $('input[name="paymentMethod"]:checked').val(),
+            BankCode: $('input[groupname="bankcode"]:checked').prop('id'),
             Status: false
         }
         $.ajax({
@@ -123,13 +146,22 @@
             },
             success: function (response) {
                 if (response.status) {
-                    console.log('create order ok');
-                    $('#divCheckout').hide();
-                    cart.deleteAll();
-                    setTimeout(function () {
-                        $('#cartContent').html('Cảm ơn bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ sớm nhất.');
-                    }, 2000);
+                    if (response.urlCheckout != undefined && response.urlCheckout != '') {
+                        window.location.href = response.urlCheckout;
+                    }
+                    else {
+                        console.log('create order ok');
+                        $('#divCheckout').hide();
+                        cart.deleteAll();
+                        setTimeout(function () {
+                            $('#cartContent').html('Cảm ơn bạn đã đặt hàng thành công. Chúng tôi sẽ liên hệ sớm nhất.');
+                        }, 2000);
+                    }
 
+                }
+                else {
+                    $('#divMessage').show();
+                    $('#divMessage').text(response.message);
                 }
             }
         });
@@ -178,6 +210,41 @@
             }
         });
     },
+
+    //addItem: function (productId) {
+    //    $.ajax({
+    //        url: '/ShoppingCart/Add',
+    //        data: {
+    //            productId: productId
+    //        },
+    //        type: 'POST',
+    //        dataType: 'json',
+    //        success: function (response) {
+    //            if (response.status) {
+    //                alert('Thêm sản phẩm thành công.');
+    //            }
+    //        }
+    //    });
+    //},
+
+    checkQuantity: function (quantity, productId) {
+        $.ajax({
+            url: '/ShoppingCart/getQuantity',
+            data: {
+                productId: productId
+            },
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+                if (quantity >= response) {
+                    alert('Số lượng sản phẩm trong kho không đủ');
+                } else {
+                    return;
+                }
+            }
+        });
+    },
+
     deleteItem: function (productId) {
         $.ajax({
             url: '/ShoppingCart/DeleteItem',
@@ -204,27 +271,65 @@
                     var html = '';
                     var data = res.data;
                     $.each(data, function (i, item) {
-                        html += Mustache.render(template, {
-                            ProductId: item.ProductId,
-                            ProductName: item.Product.Name,
-                            Image: item.Product.Image,
-                            Price: item.Product.Price,
-                            PriceF: numeral(item.Product.Price).format('0,0'),
-                            Quantity: item.Quantity,
-                            Amount: numeral(item.Quantity * item.Product.Price).format('0,0')
-                        });
+                        if (item.Product.PromotionPrice != null) {
+                            html += Mustache.render(template, {
+                                ProductId: item.ProductId,
+                                ProductName: item.Product.Name,
+                                Image: item.Product.Image,
+                                Price: item.Product.PromotionPrice,
+                                PriceF: numeral(item.Product.PromotionPrice).format('0,0'),
+                                Amount: numeral(item.Quantity * item.Product.PromotionPrice).format('0,0'),
+                                Quantity: item.Quantity
+                            });
+                        }
+                        else {
+                            html += Mustache.render(template, {
+                                ProductId: item.ProductId,
+                                ProductName: item.Product.Name,
+                                Image: item.Product.Image,
+                                Price: item.Product.Price,
+                                PriceF: numeral(item.Product.Price).format('0,0'),
+                                Amount: numeral(item.Quantity * item.Product.Price).format('0,0'),
+                                Quantity: item.Quantity
+                            });
+                        }
+
                     });
 
                     $('#cartBody').html(html);
-
                     if (html == '') {
                         $('#cartContent').html('Không có sản phẩm nào trong giỏ hàng.');
                     }
                     $('#lblTotalOrder').text(numeral(cart.getTotalOrder()).format('0,0'));
+                    $('#lblTotalOrder2').text(numeral(cart.getTotalOrder()).format('0,0'));
+                    cart.registerEvent();
+                }
+            }
+        })
+    },
+    loadData2: function () {
+        $.ajax({
+            url: '/ShoppingCart/GetAll',
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                if (res.status) {
+                    var template = $('#tplCart2').html();
+                    var html = '';
+                    var data = res.data;
+                    var slt = 0;
+                    $.each(data, function (i, item) {
+                        slt += 1
+                    });
+                    html += Mustache.render(template, {
+                        sl: slt
+                    });
+                    $('#soluong').html(html);
                     cart.registerEvent();
                 }
             }
         })
     }
+
 }
 cart.init();

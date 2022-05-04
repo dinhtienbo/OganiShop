@@ -115,6 +115,10 @@
     <Compile Include="Migrations\202205040748584_ThongKe.Designer.cs">
       <DependentUpon>202205040748584_ThongKe.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205040948061_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202205040948061_UpdateDatabase.Designer.cs">
+      <DependentUpon>202205040948061_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205040748584_ThongKe.resx">
       <DependentUpon>202205040748584_ThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205040948061_UpdateDatabase.resx">
+      <DependentUpon>202205040948061_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
