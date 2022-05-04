@@ -22,10 +22,10 @@ namespace OganiShop.Web.Controllers
         IOrderService _orderService;
         private ApplicationUserManager _userManager;
 
+
         private string merchantId = ConfigHelper.GetByKey("MerchantId");
         private string merchantPassword = ConfigHelper.GetByKey("MerchantPassword");
         private string merchantEmail = ConfigHelper.GetByKey("MerchantEmail");
-
         public ShoppingCartController(IOrderService orderService, IProductService productService, ApplicationUserManager userManager)
         {
             this._productService = productService;
@@ -39,15 +39,15 @@ namespace OganiShop.Web.Controllers
                 Session[CommonConstants.SessionCart] = new List<ShoppingCartViewModel>();
             return View();
         }
-
         public ActionResult CheckOut()
         {
             if (Session[CommonConstants.SessionCart] == null)
             {
-                return Redirect("/gio-hang.html");
+                return Redirect("/gio-hang_html");
             }
             return View();
         }
+
         public JsonResult GetUser()
         {
             if (Request.IsAuthenticated)
@@ -65,6 +65,7 @@ namespace OganiShop.Web.Controllers
                 status = false
             });
         }
+
         public ActionResult CreateOrder(string orderViewModel)
         {
             var order = new JavaScriptSerializer().Deserialize<OrderViewModel>(orderViewModel);
@@ -72,7 +73,8 @@ namespace OganiShop.Web.Controllers
             var orderNew = new Order();
 
             orderNew.UpdateOrder(order);
-
+            orderNew.PaymentStatus = "not";
+            orderNew.OrderStatus = "Chờ xử lý";
             if (Request.IsAuthenticated)
             {
                 orderNew.CustomerId = User.Identity.GetUserId();
@@ -87,16 +89,38 @@ namespace OganiShop.Web.Controllers
                 var detail = new OrderDetail();
                 detail.ProductID = item.ProductId;
                 detail.Quantity = item.Quantity;
-                detail.Price = item.Product.Price;
+                if (item.Product.PromotionPrice == null)
+                {
+                    detail.CurrentPrice = item.Product.Price;
+                }
+                else
+                {
+                    detail.CurrentPrice = item.Product.PromotionPrice.Value;
+                }
+
                 orderDetails.Add(detail);
 
+
                 isEnough = _productService.SellProduct(item.ProductId, item.Quantity);
-                break;
+                if (!isEnough)
+                {
+                    break;
+                }
             }
+
             if (isEnough)
             {
                 var orderReturn = _orderService.Create(ref orderNew, orderDetails);
                 _productService.Save();
+
+                var adminEmail = ConfigHelper.GetByKey("FromEmailAddress");
+
+                string content = System.IO.File.ReadAllText(Server.MapPath("/Assets/client/template/neworder.html"));
+                content = content.Replace("{{OrderID}}", orderReturn.ID.ToString());
+                content = content.Replace("{{UserName}}", orderReturn.CustomerEmail);
+                content = content.Replace("{{Link}}", ConfigHelper.GetByKey("CurrentLink") + "admin#/order_detail");
+
+                MailHelper.SendMail(adminEmail, "Có đơn đặt hàng mới", content);
 
                 if (order.PaymentMethod == "CASH")
                 {
@@ -107,25 +131,23 @@ namespace OganiShop.Web.Controllers
                 }
                 else
                 {
-
                     var currentLink = ConfigHelper.GetByKey("CurrentLink");
+
                     RequestInfo info = new RequestInfo();
                     info.Merchant_id = merchantId;
                     info.Merchant_password = merchantPassword;
                     info.Receiver_email = merchantEmail;
 
-
-
                     info.cur_code = "vnd";
                     info.bank_code = order.BankCode;
-
                     info.Order_code = orderReturn.ID.ToString();
-                    info.Total_amount = orderDetails.Sum(x => x.Quantity * x.Price).ToString();
+                    info.Total_amount = orderDetails.Sum(x => x.Quantity * x.CurrentPrice).ToString();
+
                     info.fee_shipping = "0";
                     info.Discount_amount = "0";
-                    info.order_description = "Thanh toán đơn hàng tại Shop";
-                    info.return_url = currentLink + "xac-nhan-don-hang.html";
-                    info.cancel_url = currentLink + "huy-don-hang.html";
+                    info.order_description = "Thanh toán đơn hàng tại BeautyCosmetic";
+                    info.return_url = currentLink + "xac-nhan-don-hang_html";
+                    info.cancel_url = currentLink + "huy-don-hang_html";
 
                     info.Buyer_fullname = order.CustomerName;
                     info.Buyer_email = order.CustomerEmail;
@@ -149,7 +171,6 @@ namespace OganiShop.Web.Controllers
                             message = result.Description
                         });
                 }
-
             }
             else
             {
@@ -159,8 +180,8 @@ namespace OganiShop.Web.Controllers
                     message = "Không đủ hàng."
                 });
             }
-
         }
+
         public JsonResult GetAll()
         {
             if (Session[CommonConstants.SessionCart] == null)
@@ -172,6 +193,7 @@ namespace OganiShop.Web.Controllers
                 status = true
             }, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public JsonResult Add(int productId)
         {
@@ -292,9 +314,16 @@ namespace OganiShop.Web.Controllers
             }
             return View();
         }
+
         public ActionResult CancelOrder()
         {
             return View();
+        }
+
+        public int getQuantity(int productId)
+        {
+            var product = _productService.GetById(productId);
+            return product.Quantity;
         }
     }
 }

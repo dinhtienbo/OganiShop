@@ -115,7 +115,7 @@ namespace OganiShop.Web.Infrastructure.Extensions
             order.CustomerEmail = orderVm.CustomerName;
             order.CustomerMobile = orderVm.CustomerName;
             order.CustomerMessage = orderVm.CustomerName;
-            order.PaymentMethod = orderVm.CustomerName;
+            order.PaymentMethod = orderVm.PaymentMethod;
             order.CreatedDate = DateTime.Now;
             order.CreatedBy = orderVm.CreatedBy;
             order.Status = orderVm.Status;

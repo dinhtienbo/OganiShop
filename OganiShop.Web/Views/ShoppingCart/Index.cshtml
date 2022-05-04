@@ -48,13 +48,16 @@
                             <input type="text" class="textbox" id="txtEmail" name="email" placeholder="Email">
                             <input type="text" class="textbox" id="txtPhone" name="phone" placeholder="Điện thoại">
 
-                            <label><input type="radio" id="rdoCash" name="paymentMethod" value="CASH" checked="checked" /> Tiền mặt</label>
-                            <label><input type="radio" id="rdoNL" name="paymentMethod" value="NL" /> TK Ngân Lượng</label>
 
-                            <label><input type="radio" id="rdoBank" value="ATM_ONLINE" name="paymentMethod" /> Thẻ Ngân hàng nội địa</label>
+                            <label style="margin-left:20px; margin-bottom: 25px;"><input type="radio" id="rdoCash" name="paymentMethod" value="CASH" checked="checked" /> Tiền mặt</label>
 
-                            <label><input type="radio" id="rdoVisa" name="paymentMethod" value="VISA" /> VISA</label>
-                            <div id="bankContent" class="boxContent" style="display:none;">
+                            <label style="margin-left:20px; margin-bottom: 25px;"><input type="radio" id="rdoNL" name="paymentMethod" value="NL" /> TK Ngân Lượng</label>
+
+                            <label style="margin-left:20px; margin-bottom: 25px;"><input type="radio" id="rdoBank" value="ATM_ONLINE" name="paymentMethod" /> Thẻ Ngân hàng nội địa</label>
+
+                            <label style="margin-left:20px; margin-bottom: 25px;"><input type="radio" id="rdoVisa" name="paymentMethod" value="VISA" /> VISA</label>
+
+                            <div id="bankContent" class="boxContent" style="display:none; margin-bottom: 10px;">
                                 Danh sách ngân hàng nội địa:
                                 <ul class="cardList clearfix">
 
@@ -235,11 +238,14 @@
 
                                 </ul>
                             </div>
+
                             <div id="nganluongContent" class="boxContent" style="display:none;">
-                                <p>
-                                    Thanh toán trực tuyến AN TOÀN và ĐƯỢC BẢO VỆ, sử dụng thẻ ngân hàng trong và ngoài nước hoặc nhiều hình thức tiện lợi khác.
-                                    Được bảo hộ & cấp phép bởi NGÂN HÀNG NHÀ NƯỚC, ví điện tử duy nhất được cộng đồng ƯA THÍCH NHẤT 2 năm liên tiếp, Bộ Thông tin Truyền thông trao giải thưởng Sao Khuê
-                                    <br />Giao dịch. Đăng ký ví NgânLượng.vn miễn phí <a href="https://www.nganluong.vn/?portal=nganluong&amp;page=user_register" target="_blank">tại đây</a>
+                                <p style="font-style: italic; font-size: 13px; margin: -15px 0 25px 20px;">
+                                    - Thanh toán trực tuyến an toàn và được bảo hộ & cấp phép bởi ngân hàng nhà nước. <br />
+                                    - Sử dụng thẻ ngân hàng trong và ngoài nước hoặc nhiều hình thức tiện lợi khác. <br />
+                                    - ví điện tử duy nhất được cộng đồng ưa thích nhất 2 năm liên tiếp. <br />
+                                    - Bộ thông tin truyền thông trao giải thưởng Sao Khuê <br />
+                                    - Giao dịch và đăng ký ví nganluong.vn miễn phí <a href="https://www.nganluong.vn/?portal=nganluong&amp;page=user_register" target="_blank">tại đây.</a>
                                 </p>
                             </div>
                             <textarea value="" id="txtMessage" rows="5"></textarea>

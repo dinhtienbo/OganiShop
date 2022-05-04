@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OganiShop.Model.Models
@@ -16,9 +17,10 @@ namespace OganiShop.Model.Models
 
         public int Quantity { set; get; }
 
-        public decimal Price { set; get; }
+        public decimal CurrentPrice { set; get; }
 
         [ForeignKey("OrderID")]
+        [JsonIgnore]
         public virtual Order Order { set; get; }
 
         [ForeignKey("ProductID")]

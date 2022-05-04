@@ -5136,6 +5136,7 @@
     <Content Include="Assets\client\js\jquery.min.js" />
     <Content Include="Assets\client\js\jquery.wmuSlider.js" />
     <Content Include="Assets\client\template\contact_template.html" />
+    <Content Include="Assets\client\template\neworder.html" />
     <Content Include="Assets\client\template\newuser.html" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
