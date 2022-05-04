@@ -27,7 +27,39 @@
             CreatePage(context);
             CreateContactDetail(context);
 
+            CreateConfigTitle(context);
 
+
+        }
+        private void CreateConfigTitle(OganiShopDbContext context)
+        {
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeTitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chủ OganiShop",
+
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chủ OganiShop",
+
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaDescription",
+                    ValueString = "Trang chủ OganiShop",
+
+                });
+            }
         }
         private void CreateUser(OganiShopDbContext context)
         {
@@ -163,7 +195,6 @@
                         Website = "http://Ogani.com.vn",
                         Other = "",
                         Status = true
-
 
                     };
                     context.ContactDetails.Add(contactDetail);
