@@ -3,7 +3,10 @@
 (function () {
     angular.module('oganishop',
         ['oganishop.products',
+            'oganishop.application_groups',
             'oganishop.product_categories',
+            'oganishop.application_roles',
+            'oganishop.application_users',
             'oganishop.common'])
         .config(config)
         .config(configAuthentication);

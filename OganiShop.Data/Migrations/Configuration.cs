@@ -16,7 +16,7 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(OganiShop.Data.OganiShopDbContext context)
@@ -163,6 +163,7 @@
                         Website = "http://Ogani.com.vn",
                         Other = "",
                         Status = true
+
 
                     };
                     context.ContactDetails.Add(contactDetail);
