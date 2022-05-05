@@ -131,6 +131,10 @@
     <Compile Include="Migrations\202205042013380_k.Designer.cs">
       <DependentUpon>202205042013380_k.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202205051509415_Finall.cs" />
+    <Compile Include="Migrations\202205051509415_Finall.Designer.cs">
+      <DependentUpon>202205051509415_Finall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -224,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205042013380_k.resx">
       <DependentUpon>202205042013380_k.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205051509415_Finall.resx">
+      <DependentUpon>202205051509415_Finall.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
