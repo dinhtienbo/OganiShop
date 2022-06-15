@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{92BD19BB-9D53-49F3-BD15-6FE6A88367F8}</ProjectGuid>
+    <ProjectGuid>{F24E2234-3204-4AE5-83B0-E69A8210665E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OganiShop.Data</RootNamespace>
@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,7 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.3\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,13 +56,182 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\202204282011188_Initial.cs" />
+    <Compile Include="Migrations\202204282011188_Initial.designer.cs">
+      <DependentUpon>202204282011188_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204291642268_AddErrorTable.cs" />
+    <Compile Include="Migrations\202204291642268_AddErrorTable.designer.cs">
+      <DependentUpon>202204291642268_AddErrorTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204300839544_Intergrate-AspnetIdentity.cs" />
+    <Compile Include="Migrations\202204300839544_Intergrate-AspnetIdentity.designer.cs">
+      <DependentUpon>202204300839544_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204300857492_Changkey.cs" />
+    <Compile Include="Migrations\202204300857492_Changkey.designer.cs">
+      <DependentUpon>202204300857492_Changkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205010914198_AddE.cs" />
+    <Compile Include="Migrations\202205010914198_AddE.designer.cs">
+      <DependentUpon>202205010914198_AddE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205011542076_AddTagField.cs" />
+    <Compile Include="Migrations\202205011542076_AddTagField.designer.cs">
+      <DependentUpon>202205011542076_AddTagField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205021623248_DatabaseFinal.cs" />
+    <Compile Include="Migrations\202205021623248_DatabaseFinal.designer.cs">
+      <DependentUpon>202205021623248_DatabaseFinal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205031737038_DbUpdate.cs" />
+    <Compile Include="Migrations\202205031737038_DbUpdate.designer.cs">
+      <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205031815468_UpdateCart.cs" />
+    <Compile Include="Migrations\202205031815468_UpdateCart.designer.cs">
+      <DependentUpon>202205031815468_UpdateCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205031859302_Database19.cs" />
+    <Compile Include="Migrations\202205031859302_Database19.designer.cs">
+      <DependentUpon>202205031859302_Database19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205040150496_ProductOrder.cs" />
+    <Compile Include="Migrations\202205040150496_ProductOrder.Designer.cs">
+      <DependentUpon>202205040150496_ProductOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205040257153_Databaseas.cs" />
+    <Compile Include="Migrations\202205040257153_Databaseas.Designer.cs">
+      <DependentUpon>202205040257153_Databaseas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205040748584_ThongKe.cs" />
+    <Compile Include="Migrations\202205040748584_ThongKe.Designer.cs">
+      <DependentUpon>202205040748584_ThongKe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205040948061_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202205040948061_UpdateDatabase.Designer.cs">
+      <DependentUpon>202205040948061_UpdateDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205041832007_Adasd.cs" />
+    <Compile Include="Migrations\202205041832007_Adasd.Designer.cs">
+      <DependentUpon>202205041832007_Adasd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205042007187_Finals.cs" />
+    <Compile Include="Migrations\202205042007187_Finals.Designer.cs">
+      <DependentUpon>202205042007187_Finals.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205042013380_k.cs" />
+    <Compile Include="Migrations\202205042013380_k.Designer.cs">
+      <DependentUpon>202205042013380_k.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202205051509415_Finall.cs" />
+    <Compile Include="Migrations\202205051509415_Finall.Designer.cs">
+      <DependentUpon>202205051509415_Finall.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OganiShopDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleGroupRepository.cs" />
+    <Compile Include="Repositories\ApplicationRoleRepository.cs" />
+    <Compile Include="Repositories\ApplicationUserGroupRepository.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
+    <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
+    <Compile Include="Repositories\FooterRepository.cs" />
+    <Compile Include="Repositories\MenuGroupRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\OrderDetailRepository.cs" />
+    <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\PageRepository.cs" />
+    <Compile Include="Repositories\PostCategoryRepository.cs" />
+    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\PostTagRepository.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\ProductTagRepository.cs" />
+    <Compile Include="Repositories\SlideRepository.cs" />
+    <Compile Include="Repositories\SupportOnlineRepository.cs" />
+    <Compile Include="Repositories\SystemConfigRepository.cs" />
+    <Compile Include="Repositories\TagRepository.cs" />
+    <Compile Include="Repositories\VisitorStatisticRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OganiShop.Common\OganiShop.Common.csproj">
       <Project>{12aeab6a-d203-4190-84cc-512515948d1c}</Project>
       <Name>OganiShop.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OganiShop.Model\OganiShop.Model.csproj">
+      <Project>{f761feb9-a0ca-4e45-ade9-4da36b4a9094}</Project>
+      <Name>OganiShop.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204282011188_Initial.resx">
+      <DependentUpon>202204282011188_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204291642268_AddErrorTable.resx">
+      <DependentUpon>202204291642268_AddErrorTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204300839544_Intergrate-AspnetIdentity.resx">
+      <DependentUpon>202204300839544_Intergrate-AspnetIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204300857492_Changkey.resx">
+      <DependentUpon>202204300857492_Changkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205010914198_AddE.resx">
+      <DependentUpon>202205010914198_AddE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205011542076_AddTagField.resx">
+      <DependentUpon>202205011542076_AddTagField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205021623248_DatabaseFinal.resx">
+      <DependentUpon>202205021623248_DatabaseFinal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031737038_DbUpdate.resx">
+      <DependentUpon>202205031737038_DbUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031815468_UpdateCart.resx">
+      <DependentUpon>202205031815468_UpdateCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205031859302_Database19.resx">
+      <DependentUpon>202205031859302_Database19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205040150496_ProductOrder.resx">
+      <DependentUpon>202205040150496_ProductOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205040257153_Databaseas.resx">
+      <DependentUpon>202205040257153_Databaseas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205040748584_ThongKe.resx">
+      <DependentUpon>202205040748584_ThongKe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205040948061_UpdateDatabase.resx">
+      <DependentUpon>202205040948061_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205041832007_Adasd.resx">
+      <DependentUpon>202205041832007_Adasd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205042007187_Finals.resx">
+      <DependentUpon>202205042007187_Finals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205042013380_k.resx">
+      <DependentUpon>202205042013380_k.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202205051509415_Finall.resx">
+      <DependentUpon>202205051509415_Finall.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,73 @@
+﻿  <!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Thống Kê Sản Phẩm Bán Chạy
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#/admin"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li><a ui-sref="statistic">Thống Kê</a></li>
+        <li class="active">Sản phẩm bán chạy</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row" style="margin-bottom: 10px;">
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="startDate" placeholder="Ngày bắt đầu (MM/dd/yyyy)" />
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" ng-model="endDate" placeholder="Ngày kết thúc (MM/dd/yyyy)" />
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" ng-click="getStatistic()">Filter</button>
+            <button class="btn btn-primary" ng-click="byDay()">By Day</button>
+            <button class="btn btn-primary" ng-click="byMonth()">By Month</button>
+            <button class="btn btn-primary" ng-click="byQuarter()">By Quater</button>
+            <button class="btn btn-primary" ng-click="byYear()">By Year</button>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Left col -->
+        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+        <section class="col-lg-12">
+            <!-- Map box -->
+            <div class="box box-solid">
+                <div class="box-header">
+                    <!-- tools box -->
+                    <i class="fa fa-map-marker"></i>
+                    <h3 class="box-title">
+                        Dữ liệu thống kê
+                    </h3>
+                </div>
+                <div class="box-body">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Sản phẩm bán chạy nhất</td>
+                                <td>Số lượng bán ra</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="(index, item) in tabledata">
+                                <td>
+                                    {{index + 1}}
+                                </td>
+                                <td>
+                                    {{item.Name}}
+                                </td>
+                                <td>
+                                    {{item.Quantity | number}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body-->
+                <div class="box-footer no-border">
+                </div>
+            </div>
+        </section><!-- right col -->
+    </div><!-- /.row (main row) -->
+
+</section><!-- /.content -->
